@@ -50,7 +50,7 @@ class RoundButton extends StatelessWidget {
                   text: title,
                   color: textcolor,
                   fontsize: 20,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
       ),

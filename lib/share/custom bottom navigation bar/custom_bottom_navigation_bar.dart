@@ -53,9 +53,7 @@ class _BottomNavigationbarState extends State<BottomNavigationbar> {
         ],
         body: Container(
             width: double.infinity,
-            decoration: const BoxDecoration(
-              gradient: globalColors.primaryGradient,
-            ),
+            decoration: const BoxDecoration(),
             child: ScreenList[_currentindex]),
       ),
       extendBody: true,
@@ -90,7 +88,7 @@ class _BottomNavigationbarState extends State<BottomNavigationbar> {
                   label: 'Booking',
                 ),
                 BottomNavigationBarItem(
-                 icon: Icon(Icons.home),
+                  icon: Icon(Icons.home),
                   label: 'Venue',
                 ),
               ],

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "753568712540",
+    "project_id": "weddinghallvistaapp",
+    "storage_bucket": "weddinghallvistaapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753568712540:android:f719d4123791430fc72399",
+        "android_client_info": {
+          "package_name": "com.example.wedding_hall_visla"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANOSp8ASxgUrqMfup6bndT8dKf-vvyfRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

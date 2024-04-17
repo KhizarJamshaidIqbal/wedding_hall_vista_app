@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:wedding_hall_visla/constants/app_size.dart';
 import 'package:wedding_hall_visla/constants/colors.dart';
-import 'package:wedding_hall_visla/constants/fonts.dart';
 import 'custom_Text_Widget.dart';
 
 class CustomPasswordInputField extends StatefulWidget {
@@ -31,39 +30,26 @@ class _CustomPasswordInputFieldState extends State<CustomPasswordInputField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            CustomText(
-              text: widget.labelText,
-              color: globalColors.TitleColor,
-              fontsize: 18,
-              fontFamily: fonts.fontfamily_1,
-            ),
-            10.w,
-            CustomText(
-              text: "*",
-              color: globalColors.RedColor,
-              fontsize: 18,
-              fontFamily: fonts.fontfamily_1,
-              fontWeight: FontWeight.bold,
-            ),
-          ],
+        CustomText(
+          text: widget.labelText,
+          color: globalColors.BlackColor,
+          fontsize: 20,
+          fontWeight: FontWeight.bold,
         ),
         15.h,
         TextFormField(
           controller: widget.controller,
           obscureText: _isPasswordVisible ? false : true,
           validator: widget.validator,
+
           style: TextStyle(
-            color: Colors.white,
-            fontFamily: fonts.fontfamily_4,
+            color: globalColors.BlackColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
           ),
           decoration: InputDecoration(
-            prefixIcon: Icon(
-              Icons.key_rounded,
-              color: globalColors.TitleColor,
-              size: 28,
-            ),
+            fillColor: globalColors.SecondaryColor,
+            filled: true,
             suffixIcon: GestureDetector(
               onTap: () {
                 setState(() {
@@ -72,31 +58,31 @@ class _CustomPasswordInputFieldState extends State<CustomPasswordInputField> {
               },
               child: Icon(
                   _isPasswordVisible ? Icons.visibility_off : Icons.visibility,
-                  color: globalColors.TitleColor,
+                  color: globalColors.BlackColor,
                   size: 25),
             ),
             hintText: widget.hintText,
             hintStyle: TextStyle(
-              color: globalColors.TitleColor,
-              fontFamily: fonts.fontfamily_4,
+              fontSize: 18,fontWeight: FontWeight.bold,
+              color: globalColors.BlackColor,
             ),
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(color: Colors.white)),
+                borderSide: const BorderSide(color: globalColors.SecondaryColor),),
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(color: Colors.white)),
+                borderSide: const BorderSide(color: globalColors.SecondaryColor),),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(color: globalColors.TitleColor),
+              borderSide: BorderSide(color:globalColors.SecondaryColor),
             ),
             labelStyle: TextStyle(color: globalColors.TitleColor),
             contentPadding:
-                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                const EdgeInsets.symmetric(vertical: 25.0, horizontal: 16.0),
           ),
-          cursorColor: Colors.white,
+          cursorColor: globalColors.BlackColor,
           cursorWidth: 2.0,
-          cursorHeight: 20.0,
+          cursorHeight: 25.0,
         ),
       ],
     );

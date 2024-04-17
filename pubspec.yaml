@@ -54,10 +54,10 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
 
   #For Firebase Authentication
-  # firebase_core: ^2.27.2
-  # firebase_auth: ^4.18.0
-  # cloud_firestore: ^4.15.4
-  # firebase_storage: ^11.2.4
+  firebase_core: ^2.27.2
+  firebase_auth: ^4.18.0
+  cloud_firestore: ^4.15.4
+  firebase_storage: ^11.2.4
 
 dev_dependencies:
   flutter_test:

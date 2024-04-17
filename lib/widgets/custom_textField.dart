@@ -10,7 +10,6 @@ class RoundedTextField extends StatelessWidget {
   bool? isOptional;
   final TextEditingController? controller;
   final TextInputType? inputType;
-  final Icon icon;
 
   final String? Function(String?)? validator;
 
@@ -21,7 +20,6 @@ class RoundedTextField extends StatelessWidget {
     this.hintText = "",
     this.inputType,
     this.controller,
-    this.icon = const Icon(Icons.person_outline),
     this.validator,
   });
 
@@ -34,14 +32,8 @@ class RoundedTextField extends StatelessWidget {
           children: [
             CustomText(
               text: labelText,
-              color: globalColors.TitleColor,
-              fontsize: 18,
-            ),
-            10.w,
-            CustomText(
-              text: "*",
-              color: globalColors.RedColor,
-              fontsize: 18,
+              color: globalColors.BlackColor,
+              fontsize: 20,
               fontWeight: FontWeight.bold,
             ),
           ],
@@ -52,30 +44,36 @@ class RoundedTextField extends StatelessWidget {
           keyboardType: inputType,
           validator: validator,
           style: TextStyle(
-            color: Colors.white,
+            color: globalColors.BlackColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
           ),
           decoration: InputDecoration(
-            prefixIcon: icon,
+            fillColor: globalColors.SecondaryColor,
+            filled: true,
             hintText: hintText,
             hintStyle: TextStyle(
-              color: globalColors.TitleColor,
+              color: globalColors.BlackColor,
             ),
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(color: Colors.white)),
+                borderSide: const BorderSide(
+                  color: globalColors.SecondaryColor,
+                )),
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(color: Colors.white)),
+                borderSide:
+                    const BorderSide(color: globalColors.SecondaryColor)),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.0),
-              borderSide: BorderSide(color: globalColors.TitleColor),
+              borderSide: BorderSide(color: globalColors.SecondaryColor),
             ),
             contentPadding:
-                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                const EdgeInsets.symmetric(vertical: 25.0, horizontal: 16.0),
           ),
-          cursorColor: Colors.white,
+          cursorColor: globalColors.BlackColor,
           cursorWidth: 2.0,
-          cursorHeight: 20.0,
+          cursorHeight: 25.0,
         ),
       ],
     );
