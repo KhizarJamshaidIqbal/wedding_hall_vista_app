@@ -49,7 +49,7 @@ class _BottomNavigationbarState extends State<BottomNavigationbar> {
       body: NestedScrollView(
         floatHeaderSlivers: true,
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
-          HomeAppBar(),
+          // HomeAppBar(),
         ],
         body: Container(
             width: double.infinity,

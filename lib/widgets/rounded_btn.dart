@@ -26,7 +26,7 @@ class RoundButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 50,
+      height: 57,
       child: ElevatedButton(
         onPressed: loading ? null : onPress,
         style: ElevatedButton.styleFrom(

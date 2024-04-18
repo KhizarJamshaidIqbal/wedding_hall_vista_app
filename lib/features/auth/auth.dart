@@ -9,7 +9,8 @@ import '../../widgets/CustomSnackbar.dart';
 
 class FirebaseAuthServices {
   FirebaseAuth _auth = FirebaseAuth.instance;
-  Future<User?> signUpWithEmailAndPassword(UserModel userModel, BuildContext context) async {
+  Future<User?> signUpWithEmailAndPassword(
+      UserModel userModel, BuildContext context) async {
     try {
       UserCredential credential = await _auth.createUserWithEmailAndPassword(
         email: userModel.email,
@@ -31,7 +32,7 @@ class FirebaseAuthServices {
       if (e.code == 'email-already-in-use') {
         print('The email address is already in use.');
         CustomSnackbar.show(context, 'The email address is already in use.',
-          backgroundColor: Colors.red);
+            backgroundColor: Colors.red);
         // You can handle the error here, e.g., show a message to the user
         // or navigate to a different screen
       } else {
@@ -41,34 +42,6 @@ class FirebaseAuthServices {
 
     return null;
   }
-  // Future<User?> signUpWithEmailAndPassword(UserModel userModel) async {
-  //   try {
-  //     UserCredential credential = await _auth.createUserWithEmailAndPassword(
-  //       email: userModel.email,
-  //       password: userModel.password,
-  //     );
-
-  //     // Store user data in Firestore
-  //     await FirebaseFirestore.instance
-  //         .collection('users')
-  //         .doc(credential.user!.uid)
-  //         .set({
-  //       'email': userModel.email,
-  //       'password': userModel.password,
-  //       // Add additional fields as needed
-  //     });
-
-  //     return credential.user;
-  //   } on FirebaseAuthException catch (e) {
-  //     if (e.code == 'email-already-in-use') {
-  //       print('The email address is already in use.');
-  //     } else {
-  //       print('An error occurred: ${e.code}');
-  //     }
-  //   }
-
-  //   return null;
-  // }
 
   Future<User?> signInWithEmailAndPassword(
       String email, String password) async {
@@ -88,6 +61,10 @@ class FirebaseAuthServices {
     return null;
   }
 
+  //sendPasswordResetEmail
+  Future<void> sendPasswordResetEmail(String email) async {
+    await _auth.sendPasswordResetEmail(email: email);
+  }
 
   Future<void> signOut() async {
     await _auth.signOut();

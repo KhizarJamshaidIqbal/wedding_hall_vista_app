@@ -4,13 +4,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:wedding_hall_visla/constants/app_size.dart';
 import 'package:wedding_hall_visla/constants/colors.dart';
+import 'package:wedding_hall_visla/features/home_screen/home_screen.dart';
 import 'package:wedding_hall_visla/features/auth/Register.dart';
 import 'package:wedding_hall_visla/features/auth/auth.dart';
+import 'package:wedding_hall_visla/features/auth/forget_password.dart';
 import 'package:wedding_hall_visla/widgets/custom_Text_Widget.dart';
 import 'package:wedding_hall_visla/widgets/rounded_btn.dart';
 import '../../../widgets/CustomPasswordInputField.dart';
 import '../../../widgets/CustomSnackbar.dart';
 import '../../../widgets/custom_textField.dart';
+import '../../constants/validators.dart';
 
 class Login extends StatefulWidget {
   Login({super.key});
@@ -29,19 +32,6 @@ class _LoginState extends State<Login> {
   final TextEditingController EmailController = new TextEditingController();
   final TextEditingController PasswordController = new TextEditingController();
 
-  String? validateEmail(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Email Field is required';
-    }
-    return null;
-  }
-
-  String? validatePassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Password Field is required';
-    }
-    return null;
-  }
 
   @override
   void dispose() {
@@ -53,6 +43,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: globalColors.WhiteColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: SingleChildScrollView(
@@ -64,7 +55,7 @@ class _LoginState extends State<Login> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  75.h,
+                  65.h,
                   Image.asset(
                     "assets/images/banner_1.jpg",
                     width: double.infinity,
@@ -83,7 +74,7 @@ class _LoginState extends State<Login> {
                     controller: PasswordController,
                     hintText: 'Enter password',
                     labelText: 'Password :',
-                    validator: validatePassword,
+                    validator: (value) => validatePassword(value, EmailController.text),
                   ),
                   10.h,
                   Row(
@@ -91,11 +82,12 @@ class _LoginState extends State<Login> {
                     children: [
                       InkWell(
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //       builder: (context) => ResetPassword(),
-                          //     ));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ForgetPassword(),
+                            ),
+                          );
                         },
                         child: const CustomText(
                           text: 'Forget password?',
@@ -150,47 +142,42 @@ class _LoginState extends State<Login> {
 
   void _signIn() async {
     if (formKey.currentState!.validate()) {
-    setState(() {
-      _isSigning = true;
-    });
-
-    // setState(() {
-    //   _isSigning = true;
-    // });
-
-    String email = EmailController.text;
-    String password = PasswordController.text;
-
-    try {
-      UserCredential userCredential =
-          await _firebaseAuth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-
       setState(() {
-        _isSigning = false;
+        _isSigning = true;
       });
+      String email = EmailController.text;
+      String password = PasswordController.text;
 
-      // User sign-in successful
-      print("Successfully signed in Wedding Hall Vista");
-      CustomSnackbar.show(context, 'Sign-In successful',
-          backgroundColor: Colors.green);
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) => WelcomeScreen(),
-      //   ),
-      // );
-    } catch (e) {
-      // Handle sign-in failure
-      print("Error signing in: $e");
-      CustomSnackbar.show(context, 'Error during sign-in\n Error: $e',
-          backgroundColor: Colors.red);
-      setState(() {
-        _isSigning = false;
-      });
+      try {
+        UserCredential userCredential =
+            await _firebaseAuth.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+
+        setState(() {
+          _isSigning = false;
+        });
+
+        // User sign-in successful
+        print("Successfully signed in Wedding Hall Vista");
+        CustomSnackbar.show(context, 'Sign-In successful',
+            backgroundColor: Colors.green);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomeScreen(),
+          ),
+        );
+      } catch (e) {
+        // Handle sign-in failure
+        print("Error signing in: $e");
+        CustomSnackbar.show(context, 'Error during sign-in\n Error: $e',
+            backgroundColor: Colors.red);
+        setState(() {
+          _isSigning = false;
+        });
+      }
     }
   }
-}
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:wedding_hall_visla/features/splash/splash_screen.dart';
+import 'features/home_screen/home_screen.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: SplashScreen(),
+      home: HomeScreen(),
     );
   }
 }

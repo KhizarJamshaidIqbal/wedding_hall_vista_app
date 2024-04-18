@@ -6,15 +6,13 @@ import 'package:wedding_hall_visla/constants/colors.dart';
 
 //CustomHomeScreenAppbar
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const HomeAppBar({Key? key}) : super(key: key);
+  const HomeAppBar({super.key});
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
-
-
     return SliverAppBar(
       floating: true,
       snap: true,

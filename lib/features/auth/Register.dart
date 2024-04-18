@@ -11,6 +11,7 @@ import 'package:wedding_hall_visla/widgets/rounded_btn.dart';
 import '../../../widgets/CustomPasswordInputField.dart';
 import '../../../widgets/CustomSnackbar.dart';
 import '../../../widgets/custom_textField.dart';
+import '../../constants/validators.dart';
 
 class Register extends StatefulWidget {
   Register({super.key});
@@ -31,31 +32,31 @@ class _RegisterState extends State<Register> {
   final TextEditingController PasswordController = new TextEditingController();
   bool isSigningUp = false;
 
-    String? validateEmail(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Email Field is required';
-    }
-    return null;
-  }
+  //   String? validateEmail(String? value) {
+  //   if (value == null || value.isEmpty) {
+  //     return 'Email Field is required';
+  //   }
+  //   return null;
+  // }
 
-  String? validatePassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Password Field is required';
-    }
-    return null;
-  }
+  // String? validatePassword(String? value) {
+  //   if (value == null || value.isEmpty) {
+  //     return 'Password Field is required';
+  //   }
+  //   return null;
+  // }
 
-  String? confirmPasswordValidate(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Confirm Password Field is required';
-    }
+  // String? confirmPasswordValidate(String? value) {
+  //   if (value == null || value.isEmpty) {
+  //     return 'Confirm Password Field is required';
+  //   }
 
-    if (value != PasswordController.text) {
-      return 'Passwords do not match';
-    }
+  //   if (value != PasswordController.text) {
+  //     return 'Passwords do not match';
+  //   }
 
-    return null;
-  }
+  //   return null;
+  // }
 
 
   @override
@@ -69,6 +70,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: globalColors.WhiteColor,
       body: SizedBox(
         // width: double.infinity,
         height: MediaQuery.of(context).size.height*1.2,
@@ -83,7 +85,7 @@ class _RegisterState extends State<Register> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    75.h,
+                    65.h,
                     Image.asset(
                           "assets/images/banner_2.jpg",
                           width: double.infinity,
@@ -102,13 +104,14 @@ class _RegisterState extends State<Register> {
                       controller: PasswordController,
                       hintText: 'Enter password',
                       labelText: 'Password :',
-                      validator: validatePassword,
+                      validator: (value) => validatePassword(value, EmailController.text),
                     ),
+                    20.h,
                     CustomPasswordInputField(
                       controller: ConfirmPasswordController,
                       hintText: 'Enter Confirm password',
-                      labelText: 'Password',
-                      validator: confirmPasswordValidate,
+                      labelText: 'Confirm Password :',
+                      validator: (value) => confirmPasswordValidate(value, PasswordController.text),
                     ),
                     const Spacer(),
                     SizedBox(
