@@ -22,7 +22,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   FirebaseAuthServices authService = FirebaseAuthServices();
-  final TextEditingController EmailController = new TextEditingController();
+  final TextEditingController EmailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();

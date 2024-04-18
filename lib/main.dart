@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:wedding_hall_visla/share/custom%20bottom%20navigation%20bar/custom_bottom_navigation_bar.dart';
+import 'package:wedding_hall_visla/features/splash/splash_screen.dart';
 import 'firebase_options.dart';
 
 List<CameraDescription>? cameras;
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home:const CustomBottomNavigationbar(),
+      home: SplashScreen(),
     );
   }
 }
