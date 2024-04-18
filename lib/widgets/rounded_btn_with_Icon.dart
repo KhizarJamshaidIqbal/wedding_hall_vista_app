@@ -50,7 +50,7 @@ class RoundButtonWithIcon extends StatelessWidget {
             20.w,
             CustomText(
               text: title,
-              color: globalColors.TitleColor,
+              color: globalColors.WhiteColor,
               fontsize: 20,
               fontFamily: 'Literata-SemiBold',
               fontWeight: FontWeight.bold,

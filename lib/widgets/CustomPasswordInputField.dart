@@ -76,7 +76,7 @@ class _CustomPasswordInputFieldState extends State<CustomPasswordInputField> {
               borderRadius: BorderRadius.circular(10.0),
               borderSide: BorderSide(color:globalColors.SecondaryColor),
             ),
-            labelStyle: TextStyle(color: globalColors.TitleColor),
+            labelStyle: TextStyle(color: globalColors.WhiteColor),
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 25.0, horizontal: 16.0),
           ),

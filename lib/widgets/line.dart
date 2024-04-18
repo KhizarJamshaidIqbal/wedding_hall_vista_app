@@ -17,19 +17,19 @@ class line extends StatelessWidget {
             width: MediaQuery.of(context).size.width * .4,
             child: const Text(''),
             decoration: const BoxDecoration(
-                color: globalColors.TitleColor,
+                color: globalColors.WhiteColor,
                 borderRadius: BorderRadius.all(Radius.circular(20))),
           ),
         ),
         const CustomText(
-            text: '  Or  ', color: globalColors.TitleColor, fontsize: 20),
+            text: '  Or  ', color: globalColors.WhiteColor, fontsize: 20),
         Expanded(
           child: Container(
             height: 2,
             width: MediaQuery.of(context).size.width * .4,
             child: const Text(''),
             decoration: const BoxDecoration(
-                color: globalColors.TitleColor,
+                color: globalColors.WhiteColor,
                 borderRadius: BorderRadius.all(Radius.circular(10))),
           ),
         ),

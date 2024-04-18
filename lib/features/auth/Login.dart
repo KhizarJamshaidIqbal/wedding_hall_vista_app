@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:wedding_hall_visla/constants/app_size.dart';
 import 'package:wedding_hall_visla/constants/colors.dart';
-import 'package:wedding_hall_visla/features/home_screen/home_screen.dart';
 import 'package:wedding_hall_visla/features/auth/Register.dart';
 import 'package:wedding_hall_visla/features/auth/auth.dart';
 import 'package:wedding_hall_visla/features/auth/forget_password.dart';
@@ -14,6 +13,7 @@ import '../../../widgets/CustomPasswordInputField.dart';
 import '../../../widgets/CustomSnackbar.dart';
 import '../../../widgets/custom_textField.dart';
 import '../../constants/validators.dart';
+import '../../share/custom bottom navigation bar/custom_bottom_navigation_bar.dart';
 
 class Login extends StatefulWidget {
   Login({super.key});
@@ -166,7 +166,7 @@ class _LoginState extends State<Login> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => HomeScreen(),
+            builder: (context) => CustomBottomNavigationbar(),
           ),
         );
       } catch (e) {

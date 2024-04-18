@@ -1,10 +1,15 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'features/home_screen/home_screen.dart';
+import 'package:wedding_hall_visla/share/custom%20bottom%20navigation%20bar/custom_bottom_navigation_bar.dart';
 import 'firebase_options.dart';
 
+List<CameraDescription>? cameras;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // TODO: load camera
+  cameras = await availableCameras();
 
   // TODO: Flutter fire Initialize
   await Firebase.initializeApp(
@@ -28,7 +33,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: HomeScreen(),
+      home:const CustomBottomNavigationbar(),
     );
   }
 }
