@@ -25,7 +25,8 @@ class _RegisterState extends State<Register> {
 
   final formKey = GlobalKey<FormState>();
 
-  final TextEditingController ConfirmPasswordController = new TextEditingController();
+  final TextEditingController ConfirmPasswordController =
+      new TextEditingController();
 
   final TextEditingController EmailController = new TextEditingController();
 
@@ -58,7 +59,6 @@ class _RegisterState extends State<Register> {
   //   return null;
   // }
 
-
   @override
   void dispose() {
     ConfirmPasswordController.dispose();
@@ -73,7 +73,7 @@ class _RegisterState extends State<Register> {
       backgroundColor: globalColors.WhiteColor,
       body: SizedBox(
         // width: double.infinity,
-        height: MediaQuery.of(context).size.height*1.2,
+        height: MediaQuery.of(context).size.height * 1.5,
         child: Form(
           key: formKey,
           child: Padding(
@@ -81,17 +81,17 @@ class _RegisterState extends State<Register> {
             child: SingleChildScrollView(
               child: SizedBox(
                 width: double.infinity,
-                height: MediaQuery.of(context).size.height*1.1,
+                height: MediaQuery.of(context).size.height * 1.2,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     65.h,
                     Image.asset(
-                          "assets/images/banner_2.jpg",
-                          width: double.infinity,
-                          fit: BoxFit.contain,
-                        ),
-                        40.h,
+                      "assets/images/banner_1.jpg",
+                      width: double.infinity,
+                      fit: BoxFit.contain,
+                    ),
+                    40.h,
                     RoundedTextField(
                       hintText: 'Enter Email',
                       labelText: 'Email :',
@@ -104,14 +104,16 @@ class _RegisterState extends State<Register> {
                       controller: PasswordController,
                       hintText: 'Enter password',
                       labelText: 'Password :',
-                      validator: (value) => validatePassword(value, EmailController.text),
+                      validator: (value) =>
+                          validatePassword(value, EmailController.text),
                     ),
                     20.h,
                     CustomPasswordInputField(
                       controller: ConfirmPasswordController,
                       hintText: 'Enter Confirm password',
                       labelText: 'Confirm Password :',
-                      validator: (value) => confirmPasswordValidate(value, PasswordController.text),
+                      validator: (value) => confirmPasswordValidate(
+                          value, PasswordController.text),
                     ),
                     const Spacer(),
                     SizedBox(
@@ -127,8 +129,9 @@ class _RegisterState extends State<Register> {
                         },
                       ),
                     ),
-                    50.h,
-                    const Spacer(),
+                    // 100.h,
+                    const Spacer(), const Spacer(), const Spacer(),
+                    const Spacer(), const Spacer(),
                   ],
                 ),
               ),
@@ -164,12 +167,12 @@ class _RegisterState extends State<Register> {
             .doc(userCredential.user!.uid)
             .set({
           'email': email,
-          'password':password,
+          'password': password,
         });
 
         print("User signed up and data saved to Firestore");
-        CustomSnackbar.show(context,
-            'Your Successfully SignUp in Wedding Hall Vista App',
+        CustomSnackbar.show(
+            context, 'Your Successfully SignUp in Wedding Hall Vista App',
             backgroundColor: Colors.green);
 
         Navigator.push(
@@ -179,20 +182,20 @@ class _RegisterState extends State<Register> {
           ),
         );
       } on FirebaseAuthException catch (e) {
-      if (e.code == 'email-already-in-use') {
-        print('The email address is already in use.');
-        CustomSnackbar.show(context, 'The email address is already in use.',
-            backgroundColor: Colors.red);
-      } else {
+        if (e.code == 'email-already-in-use') {
+          print('The email address is already in use.');
+          CustomSnackbar.show(context, 'The email address is already in use.',
+              backgroundColor: Colors.red);
+        } else {
+          print("Error signing up or saving data: $e");
+          CustomSnackbar.show(context, 'Some Error occurs',
+              backgroundColor: Colors.red);
+        }
+      } catch (e) {
         print("Error signing up or saving data: $e");
         CustomSnackbar.show(context, 'Some Error occurs',
             backgroundColor: Colors.red);
       }
-    } catch (e) {
-      print("Error signing up or saving data: $e");
-      CustomSnackbar.show(context, 'Some Error occurs',
-          backgroundColor: Colors.red);
-    }
 
       setState(() {
         isSigningUp = false;

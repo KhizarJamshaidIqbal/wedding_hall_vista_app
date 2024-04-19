@@ -2,6 +2,7 @@
 
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:wedding_hall_visla/constants/colors.dart';
@@ -46,21 +47,21 @@ class _CustomBottomNavigationbarState extends State<CustomBottomNavigationbar> {
         unselectedItemColor: globalColors.GreyColor,
         showSelectedLabels: true,
         showUnselectedLabels: true,
-        items: const [
+        items:  const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(CupertinoIcons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(CupertinoIcons.rectangle_3_offgrid_fill),
             label: 'Services',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(CupertinoIcons.gift),
             label: 'Booking',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(CupertinoIcons.map_fill),
             label: 'Venue',
           ),
         ],

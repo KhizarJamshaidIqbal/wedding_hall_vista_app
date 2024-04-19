@@ -16,6 +16,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  
   @override
   void initState() {
     super.initState();
@@ -33,8 +34,12 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: globalColors.WhiteColor,
         body: Center(
-          child: Image.asset(
-            'assets/images/wedding_hall_visla_logo1.jpg',
+          child: SizedBox(
+            height: 200,
+            width: 200,
+            child: Image.asset(
+              'assets/images/wedding_hall_visla_logo.png',
+            ),
           ),
         ));
   }

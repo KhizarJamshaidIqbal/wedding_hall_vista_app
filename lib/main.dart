@@ -27,12 +27,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Wedding Hall Vista App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 214, 22, 86),
-        ),
-        useMaterial3: true,
-      ),
       home: SplashScreen(),
     );
   }

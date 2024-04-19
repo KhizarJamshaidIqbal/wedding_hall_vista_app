@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:wedding_hall_visla/constants/app_size.dart';
 import 'package:wedding_hall_visla/constants/colors.dart';
+import 'package:flutter/cupertino.dart';
 // import 'package:share_plus/share_plus.dart';
 // import 'package:store_redirect/store_redirect.dart';
 import 'package:wedding_hall_visla/features/auth/Login.dart';
@@ -18,7 +19,6 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     Widget drawerHeader = user != null
         ? UserAccountsDrawerHeader(
             decoration: BoxDecoration(
@@ -45,10 +45,12 @@ class CustomDrawer extends StatelessWidget {
             decoration: BoxDecoration(color: globalColors.WhiteColor),
             child: CircleAvatar(
               radius: 100,
-              child: Image.asset('assets/images/wedding_hall_visla_logo1.jpg')),
+              backgroundImage:
+                  AssetImage('assets/images/wedding_hall_visla_logo.png'),
+            ),
           );
     return Drawer(
-      width: MediaQuery.of(context).size.width*.65,
+      width: MediaQuery.of(context).size.width * .65,
       surfaceTintColor: globalColors.WhiteColor,
       clipBehavior: Clip.none,
       child: ListView(
@@ -103,7 +105,7 @@ class CustomDrawer extends StatelessWidget {
                     height: 25,
                     width: 25,
                     child: Icon(
-                      Icons.home,
+                      CupertinoIcons.group_solid,
                       color: globalColors.GreyColor,
                     ),
                   ),

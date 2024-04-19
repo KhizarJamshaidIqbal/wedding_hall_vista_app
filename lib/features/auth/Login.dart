@@ -48,7 +48,7 @@ class _LoginState extends State<Login> {
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: SingleChildScrollView(
           child: SizedBox(
-            height: MediaQuery.of(context).size.height,
+            height: MediaQuery.of(context).size.height*1.1,
             width: double.infinity,
             child: Form(
               key: formKey,
@@ -57,7 +57,7 @@ class _LoginState extends State<Login> {
                 children: [
                   65.h,
                   Image.asset(
-                    "assets/images/banner_1.jpg",
+                    "assets/images/banner_2.jpg",
                     width: double.infinity,
                     fit: BoxFit.contain,
                   ),

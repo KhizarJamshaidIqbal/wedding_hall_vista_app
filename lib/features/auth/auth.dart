@@ -3,7 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:wedding_hall_visla/features/auth/UserModel.dart';
+import 'package:wedding_hall_visla/model/user_model/UserModel.dart';
 
 import '../../widgets/CustomSnackbar.dart';
 

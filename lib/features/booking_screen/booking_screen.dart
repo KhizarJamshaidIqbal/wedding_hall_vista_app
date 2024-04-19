@@ -1,4 +1,4 @@
-// ignore_for_file: unused_element
+// ignore_for_file: unused_element, prefer_final_fields, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:wedding_hall_visla/constants/app_size.dart';
@@ -6,6 +6,8 @@ import 'package:wedding_hall_visla/constants/colors.dart';
 import 'package:wedding_hall_visla/widgets/custom_Text_Widget.dart';
 import 'package:intl/intl.dart';
 import 'package:wedding_hall_visla/widgets/rounded_btn.dart';
+
+import '../../model/servises_jason_model/wedding_hall_vista_api_key.dart';
 
 class BookingScreen extends StatefulWidget {
   const BookingScreen({super.key});
@@ -18,9 +20,19 @@ class _BookingScreenState extends State<BookingScreen> {
   DateTime? _selectedDate;
   String? _selectedDropdownValue;
   List<bool> _isCheckedList = [false, false, false, false, false];
+  late List<Map<String, dynamic>> venue_img;
+
+  @override
+  void initState() {
+    super.initState();
+    final dynamic list = WeddingHallVistaApiKey.weddingHallVista;
+    venue_img =
+        venue_img = List<Map<String, dynamic>>.from(list[1]["Services"]);
+  }
 
   final TextEditingController _no_of_guest_controller = TextEditingController();
-  final TextEditingController _Phone_number_controller = TextEditingController();
+  final TextEditingController _Phone_number_controller =
+      TextEditingController();
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -72,22 +84,26 @@ class _BookingScreenState extends State<BookingScreen> {
                               shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
                               // physics: const NeverScrollableScrollPhysics(),
-                              itemCount: 8,
+                              itemCount: venue_img.length,
                               itemBuilder: (context, index) {
-                                return const FittedBox(
+                                return FittedBox(
                                   child: Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Column(
                                       children: [
                                         CircleAvatar(
-                                          radius: 35,
+                                          radius: 60,
                                           backgroundImage: AssetImage(
-                                              'assets/images/wedding_hall_visla_logo1.jpg'),
+                                              venue_img[index]
+                                                  ["Services_type_images"][1]),
                                         ),
+                                        5.h,
                                         FittedBox(
                                           child: CustomText(
-                                            text: 'Function',
+                                            text: venue_img[index]
+                                                ["Services_type"],
                                             color: globalColors.BlackColor,
+                                            fontWeight: FontWeight.bold,
                                             fontsize: 16,
                                           ),
                                         ),
@@ -151,6 +167,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                     });
                                   },
                                   items: <String>[
+                                    'Select',
                                     'Option 1',
                                     'Option 2',
                                     'Option 3'
@@ -160,8 +177,11 @@ class _BookingScreenState extends State<BookingScreen> {
                                       value: value,
                                       child: Text(
                                         value,
-                                        style: const TextStyle(
-                                            color: globalColors.BlackColor),
+                                        style: TextStyle(
+                                          color: value == 'Select'
+                                              ? Colors.grey
+                                              : globalColors.BlackColor,
+                                        ),
                                       ),
                                     );
                                   }).toList(),
