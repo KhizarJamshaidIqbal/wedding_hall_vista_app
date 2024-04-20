@@ -5,7 +5,8 @@ import 'package:wedding_hall_visla/constants/colors.dart';
 
 //CustomHomeScreenAppbar
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const HomeAppBar({super.key});
+  final String title;
+  const HomeAppBar({super.key, required this.title});
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
@@ -16,7 +17,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       iconTheme: IconThemeData(color: globalColors.BlackColor),
       title: Text(
-        'Welcome to Wedding Hall Vista',
+         title,
         style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w600,

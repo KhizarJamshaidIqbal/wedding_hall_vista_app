@@ -35,7 +35,7 @@ class _CustomBottomNavigationbarState extends State<CustomBottomNavigationbar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: HomeAppBar(),
+      appBar: HomeAppBar(title: 'Welcome to Wedding Hall Vista',),
       drawer: CustomDrawer(user: FirebaseAuth.instance.currentUser),
       body: ScreenList[_currentindex],
       extendBody: true,

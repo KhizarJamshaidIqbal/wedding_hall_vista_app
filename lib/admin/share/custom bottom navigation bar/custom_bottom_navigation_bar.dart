@@ -32,13 +32,12 @@ class _AdminCustomBottomNavigationbarState
   List<Widget> ScreenList = [
     AdminHomeScreen(),
     UsersScreen(),
-    BookingScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: HomeAppBar(),
+      appBar: HomeAppBar(title: 'Admin Panel',),
       // drawer: CustomDrawer(user: FirebaseAuth.instance.currentUser),
       body: ScreenList[_currentindex],
       extendBody: true,
@@ -59,10 +58,6 @@ class _AdminCustomBottomNavigationbarState
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.group),
             label: 'Users',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.gift),
-            label: 'Booking',
           ),
         ],
         currentIndex: _currentindex,
