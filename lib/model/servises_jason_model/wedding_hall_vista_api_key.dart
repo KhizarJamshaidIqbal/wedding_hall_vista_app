@@ -137,7 +137,6 @@ class WeddingHallVistaApiKey {
             "assets/images/wedding_functions/qawali_night/q2.jpg",
             "assets/images/wedding_functions/qawali_night/q3.jpg",
             "assets/images/wedding_functions/qawali_night/q4.jpg",
-            "assets/images/wedding_functions/qawali_night/q5.jpg",
             "assets/images/wedding_functions/qawali_night/q6.jpg",
             "assets/images/wedding_functions/qawali_night/q7.jpg",
           ],

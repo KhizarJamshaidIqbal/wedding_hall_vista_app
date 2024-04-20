@@ -1,6 +1,7 @@
 // ignore_for_file: unused_element, prefer_final_fields, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:wedding_hall_visla/constants/app_size.dart';
 import 'package:wedding_hall_visla/constants/colors.dart';
 import 'package:wedding_hall_visla/widgets/CustomSnackbar.dart';
@@ -9,6 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:wedding_hall_visla/widgets/rounded_btn.dart';
 import 'package:firebase_database/firebase_database.dart';
 import '../../../model/servises_jason_model/wedding_hall_vista_api_key.dart';
+import 'booking_screen_list.dart';
 
 class BookingScreen extends StatefulWidget {
   const BookingScreen({super.key});
@@ -21,18 +23,20 @@ class _BookingScreenState extends State<BookingScreen> {
   final TextEditingController _no_of_guest_controller = TextEditingController();
   final TextEditingController _Phone_number_controller =
       TextEditingController();
+  int? _selectedServicesIndex;
   DateTime? _selectedDate;
   String? _selectedDropdownValue;
   bool isloading = false;
   List<bool> _isCheckedList = [false, false, false, false, false];
-  late List<Map<String, dynamic>> venue_img;
+  late List<Map<String, dynamic>> venue_img, venue_img2;
   final databaseRef = FirebaseDatabase.instance.ref('Book Order');
   @override
   void initState() {
     super.initState();
     final dynamic list = WeddingHallVistaApiKey.weddingHallVista;
-    venue_img =
-        venue_img = List<Map<String, dynamic>>.from(list[1]["Services"]);
+    // venue_img =
+    venue_img = List<Map<String, dynamic>>.from(list[1]["Services"]);
+    venue_img2 = List<Map<String, dynamic>>.from(list[0]['Services']);
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -93,20 +97,66 @@ class _BookingScreenState extends State<BookingScreen> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Column(
                                       children: [
-                                        CircleAvatar(
-                                          radius: 60,
-                                          backgroundImage: AssetImage(
-                                              venue_img[index]
-                                                  ["Services_type_images"][1]),
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    BookingListScreen(
+                                                  initialIndex: index,
+                                                  imgUrls: List<
+                                                      String>.from(venue_img[
+                                                          index]
+                                                      ["Services_type_images"]),
+                                                  title: venue_img[index]
+                                                      ["Services_type"],
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                          child: CircleAvatar(
+                                            radius: 60,
+                                            backgroundImage: AssetImage(
+                                                venue_img[index]
+                                                        ["Services_type_images"]
+                                                    [1]),
+                                          ),
                                         ),
-                                        5.h,
-                                        FittedBox(
-                                          child: CustomText(
-                                            text: venue_img[index]
-                                                ["Services_type"],
-                                            color: globalColors.BlackColor,
-                                            fontWeight: FontWeight.bold,
-                                            fontsize: 16,
+                                        10.h,
+                                        InkWell(
+                                          onTap: () {
+                                            setState(() {
+                                              _selectedServicesIndex = index;
+                                            });
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                color: _selectedServicesIndex ==
+                                                        index
+                                                    ? globalColors.primaryColor
+                                                    : Colors.transparent,
+                                                width: 2,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Align(
+                                                alignment: Alignment.topCenter,
+                                                child: CustomText(
+                                                  text: venue_img[index]
+                                                      ["Services_type"],
+                                                  color:
+                                                      globalColors.BlackColor,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontsize: 18,
+                                                ),
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -248,7 +298,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                   child: ListView.builder(
                                     scrollDirection: Axis.horizontal,
                                     shrinkWrap: true,
-                                    itemCount: 5,
+                                    itemCount: venue_img2.length,
                                     itemBuilder: (context, index) {
                                       return SizedBox(
                                         width: 150,
@@ -264,11 +314,19 @@ class _BookingScreenState extends State<BookingScreen> {
                                                 onChanged: (bool? value) {
                                                   setState(() {
                                                     _isCheckedList[index] =
-                                                        value!;
+                                                        value ?? false;
                                                   });
                                                 },
                                               ),
-                                              const Text('Checkbox Text'),
+                                              FittedBox(
+                                                child: CustomText(
+                                                  text: venue_img2[index]
+                                                      ["Services_type"],
+                                                  color:
+                                                      globalColors.BlackColor,
+                                                  fontsize: 18,
+                                                ),
+                                              )
                                             ],
                                           ),
                                         ),
@@ -324,19 +382,48 @@ class _BookingScreenState extends State<BookingScreen> {
                       setState(() {
                         isloading = true;
                       });
+                      if (_selectedServicesIndex == null ||
+                          _selectedDate == null ||
+                          _selectedDropdownValue == null ||
+                          _no_of_guest_controller.text.isEmpty ||
+                          !_isCheckedList.contains(true) ||
+                          _Phone_number_controller.text.isEmpty) {
+                        CustomSnackbar.show(
+                          context,
+                          'Please fill all required fields',
+                          backgroundColor: Colors.red,
+                        );
+                        setState(() {
+                          isloading = false;
+                        });
+                        return;
+                      }
                       databaseRef
                           .child(
                               DateTime.now().millisecondsSinceEpoch.toString())
                           .set({
                         "id": DateTime.now().millisecondsSinceEpoch.toString(),
-                        "Function Type": "Birthday",
+                        "Function Type": _selectedServicesIndex != null
+                            ? venue_img[_selectedServicesIndex!]
+                                ["Services_type"]
+                            : "",
                         "Date": DateFormat('yyyy-MM-dd')
                             .format(_selectedDate!)
                             .toString(),
                         "Session": _selectedDropdownValue.toString(),
-                        "Number of Guest": _no_of_guest_controller.text.toString(),
-                        "Services You Want": "Check book",
-                        "Contact Detail": _Phone_number_controller.text.toString(),
+                        "Number of Guest":
+                            _no_of_guest_controller.text.toString(),
+                        "Services You Want": _selectedServicesIndex != null
+                            ? _isCheckedList
+                                .asMap()
+                                .entries
+                                .where((entry) => entry.value)
+                                .map((entry) =>
+                                    venue_img2[entry.key]["Services_type"])
+                                .join(", ")
+                            : "",
+                        "Contact Detail":
+                            _Phone_number_controller.text.toString(),
                       }).then((value) {
                         CustomSnackbar.show(
                           context,

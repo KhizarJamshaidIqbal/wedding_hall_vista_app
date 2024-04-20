@@ -19,6 +19,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
   // bool _expanded = false;
   Map<int, bool> _expandedMap = {};
   final databaseRef = FirebaseDatabase.instance.ref('Book Order');
+  
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -71,7 +72,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                             Radius.circular(20.0),
                           ),
                         ),
-                        height: _expanded ? screenHeight * .38 : 75,
+                        height: _expanded ? screenHeight * .38 : 80,
                         child: Column(
                           children: [
                             Padding(
@@ -79,6 +80,16 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                   horizontal: 20.0, vertical: 20.0),
                               child: Row(
                                 children: [
+                                  CircleAvatar(
+                                    backgroundColor: globalColors.primaryColor,
+                                    child: CustomText(
+                                      text: '${index + 1}',
+                                      color: Colors.black,
+                                      fontsize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  20.w,
                                   const CustomText(
                                     text: 'Order Id: ',
                                     color: Colors.black,
@@ -125,6 +136,31 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                             child: Row(
                                               children: [
                                                 const CustomText(
+                                                  text: 'Function Type:',
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontsize: 20,
+                                                ),
+                                                10.w,
+                                                CustomText(
+                                                  text: snapshot
+                                                      .child('Function Type')
+                                                      .value
+                                                      .toString(),
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontsize: 18,
+                                                  textDecoration:
+                                                      TextDecoration.underline,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          20.h,
+                                          FittedBox(
+                                            child: Row(
+                                              children: [
+                                                const CustomText(
                                                   text: 'Fuction Date:',
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold,
@@ -139,6 +175,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.w600,
                                                   fontsize: 18,
+                                                  textDecoration:
+                                                      TextDecoration.underline,
                                                 ),
                                               ],
                                             ),
@@ -161,6 +199,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.w600,
                                                 fontsize: 18,
+                                                textDecoration:
+                                                    TextDecoration.underline,
                                               ),
                                             ],
                                           ),
@@ -175,7 +215,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                                   fontsize: 20,
                                                 ),
                                                 10.w,
-                                                 CustomText(
+                                                CustomText(
                                                   text: snapshot
                                                       .child('Number of Guest')
                                                       .value
@@ -183,6 +223,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.w600,
                                                   fontsize: 18,
+                                                  textDecoration:
+                                                      TextDecoration.underline,
                                                 ),
                                               ],
                                             ),
@@ -197,7 +239,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                                 fontsize: 20,
                                               ),
                                               10.w,
-                                               CustomText(
+                                              CustomText(
                                                 text: snapshot
                                                     .child('Services You Want')
                                                     .value
@@ -205,6 +247,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.w600,
                                                 fontsize: 18,
+                                                textDecoration:
+                                                    TextDecoration.underline,
                                               ),
                                             ],
                                           ),
@@ -219,7 +263,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                                   fontsize: 20,
                                                 ),
                                                 10.w,
-                                                 CustomText(
+                                                CustomText(
                                                   text: snapshot
                                                       .child('Contact Detail')
                                                       .value
@@ -227,6 +271,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.w600,
                                                   fontsize: 18,
+                                                  textDecoration:
+                                                      TextDecoration.underline,
                                                 ),
                                               ],
                                             ),
