@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:wedding_hall_visla/constants/colors.dart';
 import 'package:wedding_hall_visla/constants/app_size.dart';
-import 'package:wedding_hall_visla/features/services_screen/services_list.dart';
+import 'package:wedding_hall_visla/user/features/services_screen/services_list.dart';
 import 'package:wedding_hall_visla/widgets/custom_Text_Widget.dart';
 
-import '../../model/servises_jason_model/wedding_hall_vista_api_key.dart';
+import '../../../model/servises_jason_model/wedding_hall_vista_api_key.dart';
 
 class ServicesScreen extends StatefulWidget {
   const ServicesScreen({super.key});

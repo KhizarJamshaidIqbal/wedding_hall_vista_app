@@ -7,11 +7,11 @@ import 'package:wedding_hall_visla/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
 // import 'package:share_plus/share_plus.dart';
 // import 'package:store_redirect/store_redirect.dart';
-import 'package:wedding_hall_visla/features/auth/Login.dart';
-import 'package:wedding_hall_visla/features/auth/auth.dart';
+import 'package:wedding_hall_visla/user/features/auth/Login.dart';
+import 'package:wedding_hall_visla/user/features/auth/auth.dart';
 import 'package:wedding_hall_visla/widgets/CustomSnackbar.dart';
 
-import '../share/custom bottom navigation bar/custom_bottom_navigation_bar.dart';
+import '../user/share/custom bottom navigation bar/custom_bottom_navigation_bar.dart';
 
 class CustomDrawer extends StatelessWidget {
   final User? user;

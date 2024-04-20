@@ -3,11 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:wedding_hall_visla/constants/app_size.dart';
 import 'package:wedding_hall_visla/constants/colors.dart';
+import 'package:wedding_hall_visla/widgets/CustomSnackbar.dart';
 import 'package:wedding_hall_visla/widgets/custom_Text_Widget.dart';
 import 'package:intl/intl.dart';
 import 'package:wedding_hall_visla/widgets/rounded_btn.dart';
-
-import '../../model/servises_jason_model/wedding_hall_vista_api_key.dart';
+import 'package:firebase_database/firebase_database.dart';
+import '../../../model/servises_jason_model/wedding_hall_vista_api_key.dart';
 
 class BookingScreen extends StatefulWidget {
   const BookingScreen({super.key});
@@ -17,11 +18,15 @@ class BookingScreen extends StatefulWidget {
 }
 
 class _BookingScreenState extends State<BookingScreen> {
+  final TextEditingController _no_of_guest_controller = TextEditingController();
+  final TextEditingController _Phone_number_controller =
+      TextEditingController();
   DateTime? _selectedDate;
   String? _selectedDropdownValue;
+  bool isloading = false;
   List<bool> _isCheckedList = [false, false, false, false, false];
   late List<Map<String, dynamic>> venue_img;
-
+  final databaseRef = FirebaseDatabase.instance.ref('Book Order');
   @override
   void initState() {
     super.initState();
@@ -30,9 +35,6 @@ class _BookingScreenState extends State<BookingScreen> {
         venue_img = List<Map<String, dynamic>>.from(list[1]["Services"]);
   }
 
-  final TextEditingController _no_of_guest_controller = TextEditingController();
-  final TextEditingController _Phone_number_controller =
-      TextEditingController();
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -314,10 +316,47 @@ class _BookingScreenState extends State<BookingScreen> {
                   20.h,
                   RoundButton(
                     title: 'Book Now',
+                    loading: isloading,
                     backgroundColor: globalColors.primaryColor,
                     textcolor: globalColors.BlackColor,
                     borderSideColor: globalColors.primaryColor,
-                    onPress: () {},
+                    onPress: () {
+                      setState(() {
+                        isloading = true;
+                      });
+                      databaseRef
+                          .child(
+                              DateTime.now().millisecondsSinceEpoch.toString())
+                          .set({
+                        "id": DateTime.now().millisecondsSinceEpoch.toString(),
+                        "Function Type": "Birthday",
+                        "Date": DateFormat('yyyy-MM-dd')
+                            .format(_selectedDate!)
+                            .toString(),
+                        "Session": _selectedDropdownValue.toString(),
+                        "Number of Guest": _no_of_guest_controller.text.toString(),
+                        "Services You Want": "Check book",
+                        "Contact Detail": _Phone_number_controller.text.toString(),
+                      }).then((value) {
+                        CustomSnackbar.show(
+                          context,
+                          'Order is Book Now',
+                          backgroundColor: Colors.green,
+                        );
+                        setState(() {
+                          isloading = false;
+                        });
+                      }).onError((error, stackTrace) {
+                        CustomSnackbar.show(
+                          context,
+                          '$error',
+                          backgroundColor: Colors.red,
+                        );
+                        setState(() {
+                          isloading = false;
+                        });
+                      });
+                    },
                   ),
                 ],
               ),

@@ -6,13 +6,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:wedding_hall_visla/constants/colors.dart';
-import 'package:wedding_hall_visla/features/booking_screen/booking_screen.dart';
-import 'package:wedding_hall_visla/features/services_screen/services_screen.dart';
-import 'package:wedding_hall_visla/features/venue_screen/venue_screen.dart';
+import 'package:wedding_hall_visla/user/features/booking_screen/booking_screen.dart';
+import 'package:wedding_hall_visla/user/features/services_screen/services_screen.dart';
+import 'package:wedding_hall_visla/user/features/venue_screen/venue_screen.dart';
 import '../../features/home_screen/home_screen.dart';
 import '../../features/model_screens/camer_screen.dart';
-import '../../widgets/CustomAppbar.dart';
-import '../../widgets/CustomDrawer.dart';
+import '../../../widgets/CustomAppbar.dart';
+import '../../../widgets/CustomDrawer.dart';
 
 class CustomBottomNavigationbar extends StatefulWidget {
   const CustomBottomNavigationbar({super.key});

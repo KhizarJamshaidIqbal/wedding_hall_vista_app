@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:wedding_hall_visla/model/user_model/UserModel.dart';
 
-import '../../widgets/CustomSnackbar.dart';
+import '../../../widgets/CustomSnackbar.dart';
 
 class FirebaseAuthServices {
   FirebaseAuth _auth = FirebaseAuth.instance;

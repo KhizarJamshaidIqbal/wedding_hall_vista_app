@@ -3,15 +3,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:wedding_hall_visla/features/auth/Login.dart';
-import 'package:wedding_hall_visla/features/auth/auth.dart';
+import 'package:wedding_hall_visla/user/features/auth/Login.dart';
+import 'package:wedding_hall_visla/user/features/auth/auth.dart';
 import 'package:wedding_hall_visla/constants/app_size.dart';
 import 'package:wedding_hall_visla/constants/colors.dart';
 import 'package:wedding_hall_visla/widgets/rounded_btn.dart';
-import '../../../widgets/CustomPasswordInputField.dart';
-import '../../../widgets/CustomSnackbar.dart';
-import '../../../widgets/custom_textField.dart';
-import '../../constants/validators.dart';
+import '../../../../widgets/CustomPasswordInputField.dart';
+import '../../../../widgets/CustomSnackbar.dart';
+import '../../../../widgets/custom_textField.dart';
+import '../../../constants/validators.dart';
 
 class Register extends StatefulWidget {
   Register({super.key});

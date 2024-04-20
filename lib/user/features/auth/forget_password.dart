@@ -3,11 +3,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:wedding_hall_visla/constants/colors.dart';
-import 'package:wedding_hall_visla/features/auth/auth.dart';
+import 'package:wedding_hall_visla/user/features/auth/auth.dart';
 import 'package:wedding_hall_visla/widgets/rounded_btn.dart';
-import '../../../widgets/custom_textField.dart';
-import '../../constants/validators.dart';
-import '../../widgets/CustomSnackbar.dart';
+import '../../../../widgets/custom_textField.dart';
+import '../../../constants/validators.dart';
+import '../../../widgets/CustomSnackbar.dart';
 
 class ForgetPassword extends StatefulWidget {
   ForgetPassword({super.key});
