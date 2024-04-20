@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'admin/share/custom bottom navigation bar/custom_bottom_navigation_bar.dart';
+import 'package:wedding_hall_visla/user/features/splash/splash_screen.dart';
 import 'firebase_options.dart';
 
 List<CameraDescription>? cameras;
@@ -25,9 +25,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.Build
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Wedding Hall Vista App',
-      home: AdminCustomBottomNavigationbar(),
+      home: SplashScreen(),
     );
   }
 }

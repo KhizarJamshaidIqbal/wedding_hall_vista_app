@@ -1,7 +1,6 @@
 // ignore_for_file: unused_element, prefer_final_fields, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:wedding_hall_visla/constants/app_size.dart';
 import 'package:wedding_hall_visla/constants/colors.dart';
 import 'package:wedding_hall_visla/widgets/CustomSnackbar.dart';
