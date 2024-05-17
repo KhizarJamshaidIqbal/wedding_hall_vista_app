@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:wedding_hall_visla/constants/app_size.dart';
 import 'package:wedding_hall_visla/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
-// import 'package:share_plus/share_plus.dart';
-// import 'package:store_redirect/store_redirect.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:store_redirect/store_redirect.dart';
 import 'package:wedding_hall_visla/user/features/auth/Login.dart';
 import 'package:wedding_hall_visla/user/features/auth/auth.dart';
 import 'package:wedding_hall_visla/widgets/CustomSnackbar.dart';
@@ -176,12 +176,12 @@ class CustomDrawer extends StatelessWidget {
                 ),
                 onTap: () async {
                   // shareApp();
-                  // try {
-                  //   Share.share(
-                  //       "https://play.google.com/store/apps/details?id=com.example.wedding_hall_visla");
-                  // } catch (e) {
-                  //   print(e.toString());
-                  // }
+                  try {
+                    Share.share(
+                        "https://play.google.com/store/apps/details?id=com.example.wedding_hall_visla");
+                  } catch (e) {
+                    print(e.toString());
+                  }
                 },
               ),
               ListTile(
@@ -206,12 +206,12 @@ class CustomDrawer extends StatelessWidget {
                   ),
                 ),
                 onTap: () {
-                  // try {
-                  // StoreRedirect.redirect(androidAppId: "com.iyaffle.rangoli",
-                  //   iOSAppId: "585027354");
-                  // } catch (e) {
-                  //   print(e);
-                  // }
+                  try {
+                  StoreRedirect.redirect(androidAppId: "com.iyaffle.rangoli",
+                    iOSAppId: "585027354");
+                  } catch (e) {
+                    print(e);
+                  }
                 },
               ),
               50.h,

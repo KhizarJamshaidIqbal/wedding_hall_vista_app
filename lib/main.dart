@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Wedding Hall Vista App',
+      title: 'Wedding Hall Vista',
       home: SplashScreen(),
     );
   }
