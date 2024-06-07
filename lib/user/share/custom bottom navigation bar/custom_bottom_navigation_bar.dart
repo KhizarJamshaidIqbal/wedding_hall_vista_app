@@ -84,12 +84,12 @@ class _CustomBottomNavigationbarState extends State<CustomBottomNavigationbar> {
               splashColor: globalColors.WhiteColor,
               hoverColor: globalColors.WhiteColor,
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CameraScreen(),
-                  ),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => CameraScreen(),
+                //   ),
+                // );
               },
               child: Icon(Icons.camera))
           : null,

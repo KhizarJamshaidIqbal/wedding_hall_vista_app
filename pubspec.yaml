@@ -58,9 +58,10 @@ dependencies:
   firebase_auth: ^4.18.0
   cloud_firestore: ^4.15.4
   firebase_storage: ^11.2.4
-  camera: ^0.11.0
+  # camera: ^0.11.0
   intl: ^0.19.0
   firebase_database: ^10.5.2
+  # arcore_flutter_plugin: ^0.1.0
 
 dev_dependencies:
   flutter_test:

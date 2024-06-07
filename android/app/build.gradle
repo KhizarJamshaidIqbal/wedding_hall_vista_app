@@ -34,6 +34,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    // compileOptions {
+    //     sourceCompatibility 1.8
+    //     targetCompatibility 1.8
+    // }
 
     kotlinOptions {
         jvmTarget = '1.8'
@@ -48,7 +52,7 @@ android {
         applicationId "com.example.wedding_hall_visla"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -67,4 +71,10 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    // // Provides ArFragment, and other UX resources.
+    // implementation 'com.google.ar.sceneform.ux:sceneform-ux:1.8.0'
+
+    // // Alternatively, use ArSceneView without the UX dependency.
+    // implementation 'com.google.ar.sceneform:core:1.8.0'
+}
