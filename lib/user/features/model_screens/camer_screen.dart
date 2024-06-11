@@ -1,109 +1,93 @@
-// // ignore_for_file: file_names, unused_local_variable, unused_element, prefer_const_constructors, avoid_print, use_key_in_widget_constructors, use_build_context_synchronously, unnecessary_null_comparison
+import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
 
-// import 'package:camera/camera.dart';
-// import 'package:flutter/material.dart';
-// import 'package:wedding_hall_visla/constants/colors.dart';
-// import 'package:wedding_hall_visla/main.dart';
+class CameraApp extends StatefulWidget {
+  const CameraApp({Key? key}) : super(key: key);
 
-// class CameraScreen extends StatefulWidget {
-//   const CameraScreen({Key? key});
+  @override
+  State<CameraApp> createState() => _CameraAppState();
+}
 
-//   @override
-//   State<CameraScreen> createState() => _CameraScreenState();
-// }
+class _CameraAppState extends State<CameraApp> {
+  CameraController? controller; // Make controller nullable
+  double imageScale = 1.0;
 
-// class _CameraScreenState extends State<CameraScreen> {
-//   late CameraImage imgCamera;
-//   late CameraController cameraController;
-//   bool isWorking = false;
-//   String result = "";
-//   bool isFlashOn = false;
+  @override
+  void initState() {
+    super.initState();
+    _initializeCamera();
+  }
 
-//   initCamera() {
-//     cameraController = CameraController(cameras![0], ResolutionPreset.medium);
+  Future<void> _initializeCamera() async {
+    try {
+      final List<CameraDescription> cameras = await availableCameras();
+      controller = CameraController(cameras[0], ResolutionPreset.max);
+      await controller?.initialize();
+      if (mounted) {
+        setState(() {});
+      }
+    } on CameraException catch (e) {
+      _handleCameraError(e);
+    }
+  }
 
-//     cameraController.initialize().then((value) {
-//       if (!mounted) {
-//         return;
-//       }
+  void _handleCameraError(CameraException error) {
+    debugPrint('Error: ${error.code}\nError Message: ${error.description}');
+    // Handle camera initialization errors here.
+    // You can display an error message to the user or take appropriate action.
+  }
 
-//       setState(() {
-//         cameraController.startImageStream((imageFromStream) {
-//           if (!isWorking) {
-//             isWorking = true;
-//             imgCamera = imageFromStream;
-//           }
-//         });
-//       });
-//       // Set flash mode to torch initially
-//       // cameraController.setFlashMode(FlashMode.torch);
-//     });
-//   }
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
+  }
 
-//   @override
-//   void initState() {
-//     super.initState();
-
-//     initCamera();
-//   }
-
-//   @override
-//   void dispose() {
-//     super.dispose();
-//     cameraController.dispose();
-//     // cameraController.setFlashMode(FlashMode.off);
-//     // cameraController.stopImageStream();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     Size size = MediaQuery.of(context).size;
-//     return SafeArea(
-//       child: Scaffold(
-//         body: SingleChildScrollView(
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               SizedBox(
-//                 height: MediaQuery.of(context).size.height,
-//                 child: (!cameraController.value.isInitialized)
-//                     ? Container(
-//                         height: double.infinity,
-//                         width: double.infinity,
-//                         decoration: BoxDecoration(
-//                             borderRadius: BorderRadius.circular(8),
-//                             color: Color(0xff2B2A2A)),
-//                       )
-//                     : AspectRatio(
-//                         aspectRatio: cameraController.value.aspectRatio,
-//                         child: CameraPreview(cameraController),
-//                       ),
-//               ),
-//             ],
-//           ),
-//         ),
-//         floatingActionButton: FloatingActionButton(
-//           backgroundColor: globalColors.primaryColor,
-//           child: Icon(
-//             Icons.add_a_photo_outlined,
-//             color: globalColors.WhiteColor,
-//           ),
-//           onPressed: () async {
-//             XFile? image = await cameraController.takePicture();
-//             if (image != null || image == null) {
-//               // Set flash mode to off
-//               // cameraController.setFlashMode(FlashMode.off);
-//               // Navigator.push(
-//               //   context,
-//               //   MaterialPageRoute(
-//               //     builder: (context) =>
-//               //         Attempted(imagePath: image.path),
-//               //   ),
-//               // );
-//             }
-//           },
-//         ),
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    if (controller == null || !controller!.value.isInitialized) {
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+    return Scaffold(
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          SizedBox(
+            height: double.infinity,
+            child: CameraPreview(controller!)),
+          Positioned(
+            child: Transform.scale(
+              scale: imageScale,
+              child: Image.asset(
+                'assets/models/model.jpg', // Ensure this path is correct
+                width: 300,
+                height: 200,
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 20,
+            child: Container(
+              width: 300,
+              child: Slider(
+                value: imageScale,
+                min: 0.5,
+                max: 2.0,
+                onChanged: (value) {
+                  setState(() {
+                    imageScale = value;
+                  });
+                },
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

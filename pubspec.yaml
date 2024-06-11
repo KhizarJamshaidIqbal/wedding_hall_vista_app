@@ -39,7 +39,7 @@ dependencies:
   lottie: ^3.1.1
   loading_animation_widget:
   font_awesome_flutter: ^10.7.0
-  share_plus: ^6.3.1
+  share_plus: ^9.0.0
   store_redirect: ^2.0.2
   url_launcher: ^6.1.10
   webview_flutter: ^4.0.5
@@ -54,13 +54,13 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
 
   #For Firebase Authentication
-  firebase_core: ^2.27.2
-  firebase_auth: ^4.18.0
-  cloud_firestore: ^4.15.4
-  firebase_storage: ^11.2.4
-  # camera: ^0.11.0
+  firebase_core: ^3.1.0
+  firebase_auth: ^5.1.0
+  cloud_firestore: ^5.0.1
+  firebase_storage: ^12.0.1
+  camera:
   intl: ^0.19.0
-  firebase_database: ^10.5.2
+  firebase_database: ^11.0.1
   # arcore_flutter_plugin: ^0.1.0
 
 dev_dependencies:
@@ -120,7 +120,7 @@ flutter:
     
   # Model
 
-  #   - images/a_dot_ham.jpeg
+    - assets/models/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

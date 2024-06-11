@@ -1,14 +1,18 @@
 // import 'package:camera/camera.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:wedding_hall_visla/user/features/model_screens/camer_screen.dart';
 import 'package:wedding_hall_visla/user/features/splash/splash_screen.dart';
 import 'firebase_options.dart';
-// List<CameraDescription>? cameras;
+
+List<CameraDescription>? cameras;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // TODO: load camera
-  // cameras = await availableCameras();
+  cameras = await availableCameras();
 
   // TODO: Flutter fire Initialize
   await Firebase.initializeApp(
@@ -26,7 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Wedding Hall Vista',
-      home: SplashScreen(),
+      home: CameraApp(),
     );
   }
 }
