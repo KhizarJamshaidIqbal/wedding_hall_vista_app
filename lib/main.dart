@@ -2,7 +2,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:wedding_hall_visla/user/features/model_screens/camer_screen.dart';
 import 'package:wedding_hall_visla/user/features/splash/splash_screen.dart';
 import 'firebase_options.dart';
 
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Wedding Hall Vista',
-      home: CameraApp(),
+      home: SplashScreen(),
     );
   }
 }
